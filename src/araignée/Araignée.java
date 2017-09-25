@@ -5,8 +5,14 @@
  */
 package araignée;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.geom.Line2D;
 import javax.swing.*;
 
 /**
@@ -17,21 +23,19 @@ public class Araignée {
 
     public static void main(String[] args) {
                 
-        JPanel myPanel;
-        
-        myPanel = new JPanel() {
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                g.drawLine(0,0, 20, 35);
-            };
-            
         JFrame f = new JFrame("Jeu de l'araignée");
-        f.add("North",myPanel);
-        f.setPreferredSize(new Dimension(500,120));
-        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        
-        f.add("North",myPanel);
-        
-    }
+        f.addWindowListener(new WindowAdapter() {
+           public void windowClosing(WindowEvent e) {
+              System.exit(0);
+           }
+        });
+        JApplet applet = new DrawLines();
+        f.getContentPane().add("Center", applet);
+        applet.init();
+        f.pack();
+        f.setSize(new Dimension(600,600));
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setVisible(true);
+     }
     
 }
