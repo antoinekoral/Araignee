@@ -24,7 +24,7 @@ import javax.swing.*;
 public class Araignée {
 
     public static void main(String[] args) {
-                
+                             
         JFrame f = new JFrame("Jeu de l'araignée");
         JApplet lines = new DrawLines();
         f.getContentPane().add("Center", lines);
@@ -55,11 +55,14 @@ public class Araignée {
                 "This doesn't really do anything");
         menu.add(menuItem);
         
+        Grille g=new Grille();
+        f.setContentPane(g.Cadre);
+   
         f.pack();
         f.setJMenuBar(menuBar);
         f.setSize(new Dimension(600,600));
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);
      }
-    
+   
 }
