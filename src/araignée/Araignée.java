@@ -16,22 +16,13 @@ import javax.swing.*;
 public class Araignée {
 
     public static void main(String[] args) {
-                
-        JPanel myPanel;
+        JFrame Fenetre = new JFrame ("Test");        
+        Grille g=new Grille();
+        Fenetre.setContentPane(g.Cadre);
         
-        myPanel = new JPanel() {
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                g.drawLine(0,0, 20, 35);
-            };
-            
-        JFrame f = new JFrame("Jeu de l'araignée");
-        f.add("North",myPanel);
-        f.setPreferredSize(new Dimension(500,120));
-        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        
-        f.add("North",myPanel);
-        
+        Fenetre.pack();
+        Fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Fenetre.setVisible(true);
     }
     
 }
