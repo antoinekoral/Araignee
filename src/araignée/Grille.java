@@ -10,6 +10,7 @@ package araignée;
  * @author Théo
  */
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.*;
@@ -18,30 +19,30 @@ import java.awt.event.MouseListener;
 
 
 public class Grille {
-    public JPanel Cadre;
-    public JPanel NE;
-    public JPanel N;
-    public JPanel NO;
-    public JPanel O;
-    public JPanel C;
-    public JPanel E;
-    public JPanel SE;
-    public JPanel S;
-    public JPanel SO;
+    public JLabel Cadre;
+    public JLabel NE;
+    public JLabel N;
+    public JLabel NO;
+    public JLabel O;
+    public JLabel C;
+    public JLabel E;
+    public JLabel SE;
+    public JLabel S;
+    public JLabel SO;
     
     public Grille (){
-        Cadre=new JPanel();
-        NE=new JPanel();
-        N=new JPanel();
-        NO=new JPanel();
-        O=new JPanel();
-        C=new JPanel();
-        E=new JPanel();
-        SE=new JPanel();
-        S=new JPanel();
-        SO=new JPanel();
+        Cadre=new JLabel(new ImageIcon ("Grille_Morpion.png"));
+        NE=new JLabel();
+        N=new JLabel();
+        NO=new JLabel();
+        O=new JLabel();
+        C=new JLabel();
+        E=new JLabel();
+        SE=new JLabel();
+        S=new JLabel();
+        SO=new JLabel();
         JLabel text=new JLabel("test");
-        Dimension dim=new Dimension(50,50);
+        Dimension dim=new Dimension(200,200);
         NE.setPreferredSize(dim);
         NO.setPreferredSize(dim);
         N.setPreferredSize(dim);
@@ -51,6 +52,7 @@ public class Grille {
         SO.setPreferredSize(dim);
         S.setPreferredSize(dim);
         SE.setPreferredSize(dim);
+        
         
         Cadre.setLayout(new GridLayout(0,3));
         Cadre.add(NO);
@@ -62,7 +64,9 @@ public class Grille {
         Cadre.add(SO);
         Cadre.add(S);
         Cadre.add(SE);
-        Cadre.add(text);
+        /*Cadre.add(text);*/     
+        
+        NO.setOpaque(false);
         
         NO.addMouseListener (new TraiteClic(NO,"NO",text));
         N.addMouseListener (new TraiteClic(N,"N",text));

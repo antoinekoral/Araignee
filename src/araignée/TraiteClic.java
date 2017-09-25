@@ -15,11 +15,11 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 
 public class TraiteClic implements MouseListener {
-    private JPanel JP;
+    private JLabel JP;
     private String Zone;
     private JLabel JL;
     
-    public TraiteClic (JPanel j,String z,JLabel l){
+    public TraiteClic (JLabel j,String z,JLabel l){
         JP=j;
         Zone=z;
         JL=l;
@@ -27,8 +27,8 @@ public class TraiteClic implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        JL.setText(Zone);
-        JP.setBackground(Color.RED);
+       /* JL.setText(Zone);*/
+        JP.setIcon(new ImageIcon("Logo_CTN_carre.jpg"));
     }
 
     @Override

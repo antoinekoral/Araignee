@@ -32,9 +32,7 @@ public class Araignée {
         
         Grille g=new Grille();
         f.setContentPane(g.Cadre);
-        JApplet applet = new DrawLines();
-        f.getContentPane().add("Center", applet);
-        applet.init();
+        
         f.pack();
         f.setSize(new Dimension(600,600));
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
