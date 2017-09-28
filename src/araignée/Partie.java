@@ -13,10 +13,10 @@ import java.util.ArrayList;
  */
 public class Partie {
     
-    private Player joueur1;
-    private Player joueur2;
+    public Player joueur1;
+    public Player joueur2;
     private Player joueurquijoue;
-    private String message;
+    public String message;
     private Grille g;
     
     public Partie(String p1,String p2,Grille g) {
@@ -25,14 +25,17 @@ public class Partie {
         joueurquijoue = joueur1;
         message = joueurquijoue.get_login() + ", à toi de jouer !";
         this.g = g;
+        this.g.joueurquijoue = joueurquijoue;
     }
     
     public void changerJoueur() {
         if (joueurquijoue == joueur1) {
             joueurquijoue = joueur2;
+            
         } else {
             joueurquijoue = joueur1;
         }
+        g.joueurquijoue = joueurquijoue;
         message = joueurquijoue.get_login() + ", à toi de jouer !";
     }
     

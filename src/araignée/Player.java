@@ -18,24 +18,37 @@ public class Player {
     private ArrayList<Pion> pions;
     private int pionsPlaces;
     private String image;
+    public Pion pion_choisi;
+    public boolean second_clic;
+    private Partie partie;
 
     
     Player(String login,String image) {
         this.login = login;        
         this.image = image;
         pionsPlaces = 0;
+        second_clic = false;
     }
     
     public void NewMove(JLabel JL) {
         //Ajout d'un nouveau pion
-        pions.add(new Pion(JL));
-        pionsPlaces += 1;
+        if ((partie.joueur1.search_JL(JL) == new Pion(new JLabel())) &&
+            (partie.joueur2.search_JL(JL) == new Pion(new JLabel()))) {
+            pions.add(new Pion(JL));
+            pionsPlaces += 1;
+            partie.changerJoueur();
+        } else {
+            partie.message += ""
+                    + "Il y a déjà un pion à cet endroit !";
+        }
+
     }
     
     public JLabel NewMove(Pion p,JLabel JL) {
         //Modifier la position d'un pion existant
         pions.remove(p);
-        pions.add(new Pion(JL));
+        pionsPlaces -= 1;
+        NewMove(JL);
         return p.get_label();
     }
     
