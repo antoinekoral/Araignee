@@ -20,11 +20,12 @@ public class Partie {
     private Grille g;
     
     public Partie(String p1,String p2,Grille g) {
-        joueur1 = new Player(p1,"chemin/image1");
-        joueur2 = new Player(p2,"chemin/image2");
+        joueur1 = new Player(p1,"Circle");
+        joueur2 = new Player(p2,"Cross");
         joueurquijoue = joueur1;
         message = joueurquijoue.get_login() + ", à toi de jouer !";
         this.g = g;
+        this.g.joueurquijoue=joueurquijoue;
     }
     
     public void changerJoueur() {
@@ -33,6 +34,7 @@ public class Partie {
         } else {
             joueurquijoue = joueur1;
         }
+        g.joueurquijoue=joueurquijoue;
         message = joueurquijoue.get_login() + ", à toi de jouer !";
     }
     

@@ -17,19 +17,30 @@ import java.awt.event.MouseEvent;
 public class TraiteClic implements MouseListener {
     private JLabel Case;
     private String icone;
+    private Player jqj;
     public boolean clicked;
     
-    public TraiteClic (JLabel j,String image){
-        Case=j;
-        icone=image;
-        clicked=false;
-        
+    public TraiteClic (JLabel jl,Player j){
+        Case=jl;
+        jqj=j;
+        icone=j.get_image();
+        clicked=false;        
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
         Case.setIcon(new ImageIcon(icone+".png"));
-        clicked=true;
+        if (jqj.get_pionsPlaces()!=3)
+            jqj.NewMove(Case);
+        else if (jqj.second_clic){
+            jqj.NewMove(jqj.pion_choisi,Case);
+            jqj.second_clic=false;
+        }
+        else{
+            jqj.pion_choisi=jqj.search_JL(Case);
+            jqj.second_clic=true;
+        }
+            
     }
 
     @Override

@@ -34,6 +34,7 @@ public class Grille {
     public JLabel S;
     public JLabel SO;
     public ArrayList<TraiteClic> TC;
+    public Player joueurquijoue;
     
     
     public Grille (){
@@ -49,15 +50,17 @@ public class Grille {
         S=new JLabel();
         SO=new JLabel();
         
-        TraiteClic tcNE = new TraiteClic(NE,"index");
-        TraiteClic tcN = new TraiteClic(N,"index");
-        TraiteClic tcNO = new TraiteClic(NO,"index");
-        TraiteClic tcE = new TraiteClic(E,"index");
-        TraiteClic tcC = new TraiteClic(C,"index");
-        TraiteClic tcO = new TraiteClic(O,"index");
-        TraiteClic tcSO = new TraiteClic(SO,"index");
-        TraiteClic tcS = new TraiteClic(S,"index");
-        TraiteClic tcSE = new TraiteClic(SE,"index");
+        joueurquijoue=new Player("a","a");
+        
+        TraiteClic tcNE = new TraiteClic(NE,joueurquijoue);
+        TraiteClic tcN = new TraiteClic(N,joueurquijoue);
+        TraiteClic tcNO = new TraiteClic(NO,joueurquijoue);
+        TraiteClic tcE = new TraiteClic(E,joueurquijoue);
+        TraiteClic tcC = new TraiteClic(C,joueurquijoue);
+        TraiteClic tcO = new TraiteClic(O,joueurquijoue);
+        TraiteClic tcSO = new TraiteClic(SO,joueurquijoue);
+        TraiteClic tcS = new TraiteClic(S,joueurquijoue);
+        TraiteClic tcSE = new TraiteClic(SE,joueurquijoue);
         TC=new ArrayList<>();
         TC.add(tcNE);
         TC.add(tcN);

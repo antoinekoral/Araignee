@@ -18,12 +18,16 @@ public class Player {
     private ArrayList<Pion> pions;
     private int pionsPlaces;
     private String image;
+    public Pion pion_choisi;
+    public boolean second_clic;
 
     
     Player(String login,String image) {
         this.login = login;        
         this.image = image;
         pionsPlaces = 0;
+        second_clic=false;
+        pions=new ArrayList<>();
     }
     
     public void NewMove(JLabel JL) {
