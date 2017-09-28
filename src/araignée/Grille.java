@@ -10,16 +10,20 @@ package araignée;
  * @author Théo
  */
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+
 
 
 public class Grille {
     public JLabel Cadre;
+    public JLabel TopCadre;
     public JLabel NE;
     public JLabel N;
     public JLabel NO;
@@ -29,9 +33,12 @@ public class Grille {
     public JLabel SE;
     public JLabel S;
     public JLabel SO;
+    public ArrayList<TraiteClic> TC;
+    
     
     public Grille (){
-        Cadre=new JLabel(new ImageIcon ("Grille_Morpion.png"));
+        TopCadre=new JLabel(new ImageIcon ("Grille_Morpion.png"));
+        Cadre=new JLabel(new ImageIcon("icon.jpg"));
         NE=new JLabel();
         N=new JLabel();
         NO=new JLabel();
@@ -41,7 +48,27 @@ public class Grille {
         SE=new JLabel();
         S=new JLabel();
         SO=new JLabel();
-        JLabel text=new JLabel("test");
+        
+        TraiteClic tcNE = new TraiteClic(NE,"index");
+        TraiteClic tcN = new TraiteClic(N,"index");
+        TraiteClic tcNO = new TraiteClic(NO,"index");
+        TraiteClic tcE = new TraiteClic(E,"index");
+        TraiteClic tcC = new TraiteClic(C,"index");
+        TraiteClic tcO = new TraiteClic(O,"index");
+        TraiteClic tcSO = new TraiteClic(SO,"index");
+        TraiteClic tcS = new TraiteClic(S,"index");
+        TraiteClic tcSE = new TraiteClic(SE,"index");
+        TC=new ArrayList<>();
+        TC.add(tcNE);
+        TC.add(tcN);
+        TC.add(tcNO);
+        TC.add(tcE);
+        TC.add(tcC);
+        TC.add(tcO);
+        TC.add(tcSE);
+        TC.add(tcS);
+        TC.add(tcSO);
+        
         Dimension dim=new Dimension(200,200);
         NE.setPreferredSize(dim);
         NO.setPreferredSize(dim);
@@ -53,8 +80,7 @@ public class Grille {
         S.setPreferredSize(dim);
         SE.setPreferredSize(dim);
         
-        
-        Cadre.setLayout(new GridLayout(0,3));
+        Cadre.setLayout(new GridLayout(0,3,130,130));
         Cadre.add(NO);
         Cadre.add(N);
         Cadre.add(NE);
@@ -64,18 +90,35 @@ public class Grille {
         Cadre.add(SO);
         Cadre.add(S);
         Cadre.add(SE);
-        /*Cadre.add(text);*/     
+        Cadre.setBorder(BorderFactory.createLineBorder(Color.white,20));
         
-        NO.setOpaque(false);
+        TopCadre.setLayout(new BorderLayout());
+        TopCadre.add(Cadre);
+        TopCadre.setPreferredSize(new Dimension(600,600));
         
-        NO.addMouseListener (new TraiteClic(NO,"NO",text));
-        N.addMouseListener (new TraiteClic(N,"N",text));
-        NE.addMouseListener (new TraiteClic(NE,"NE",text));
-        E.addMouseListener (new TraiteClic(E,"E",text));
-        C.addMouseListener (new TraiteClic(C,"C",text));
-        O.addMouseListener (new TraiteClic(O,"O",text));
-        SO.addMouseListener (new TraiteClic(SO,"SO",text));
-        S.addMouseListener (new TraiteClic(S,"S",text));
-        SE.addMouseListener (new TraiteClic(SE,"SE",text));
+        NO.addMouseListener (tcNO);
+        N.addMouseListener (tcN);
+        NE.addMouseListener (tcNE);
+        E.addMouseListener (tcE);
+        C.addMouseListener (tcC);
+        O.addMouseListener (tcO);
+        SO.addMouseListener (tcSO);
+        S.addMouseListener (tcS);
+        SE.addMouseListener (tcSE);
+        
+        /*
+        public JLabel CaseCliquee (g.TC){
+            for (TraiteClic tc : TC)
+                if (tc.clicked==true)
+                    return tc;                
+        }
+        
+        public void ResetCase (g.TC){
+            for (TraiteClic tc : TC)
+                tc.clicked=false;
+        }
+        
+        */
+                        
     }
 }

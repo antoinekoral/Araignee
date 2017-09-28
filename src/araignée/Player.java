@@ -15,6 +15,7 @@ public class Player {
     private String login;
     private ArrayList<Pion> pions;
     private int pions_places;
+    public String image;
     
     Player(String login) {
         this.login = login;        
