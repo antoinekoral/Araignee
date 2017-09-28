@@ -15,20 +15,21 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 
 public class TraiteClic implements MouseListener {
-    private JLabel JP;
-    private String Zone;
-    private JLabel JL;
+    private JLabel Case;
+    private String icone;
+    public boolean clicked;
     
-    public TraiteClic (JLabel j,String z,JLabel l){
-        JP=j;
-        Zone=z;
-        JL=l;
+    public TraiteClic (JLabel j,String image){
+        Case=j;
+        icone=image;
+        clicked=false;
+        
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-       /* JL.setText(Zone);*/
-        JP.setIcon(new ImageIcon("Logo_CTN_carre.jpg"));
+        Case.setIcon(new ImageIcon(icone+".png"));
+        clicked=true;
     }
 
     @Override
@@ -47,6 +48,12 @@ public class TraiteClic implements MouseListener {
     public void mouseExited(MouseEvent e) {
     }
 
+    public boolean getEtat(){
+        return clicked;
+    }
     
+    public JLabel getCase(){
+        return Case;
+    }
     
 }

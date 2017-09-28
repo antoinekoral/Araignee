@@ -15,6 +15,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.geom.Line2D;
+import java.awt.*;
 import javax.swing.*;
 
 /**
@@ -32,8 +33,17 @@ public class Araignée {
         MF.f.getContentPane().add("Center", lines);
         lines.init();
         
+        JPanel Texte=new JPanel();
+        JLabel Annonces=new JLabel ("TEXT",SwingConstants.CENTER);
+        Texte.setPreferredSize(new Dimension(600,100));
+        Texte.add(Annonces);
         
-        MF.f.setContentPane(g.Cadre);
+        JPanel Jeu = new JPanel();
+        Jeu.setBackground(Color.white);
+        Jeu.setLayout(new BoxLayout(Jeu,BoxLayout.PAGE_AXIS));
+        Jeu.add(g.TopCadre);
+        Jeu.add(Texte);
+        MF.f.setContentPane(Jeu);
         MF.f.pack();
         MF.f.setJMenuBar(MF.menuBar);
         MF.f.setSize(new Dimension(600,600));
