@@ -5,16 +5,20 @@
  */
 package araignée;
 
+import javax.swing.JLabel;
+
 /**
  *
  * @author antoine
  */
 public class Pion {
-    private int x;
-    private int y;
+    private JLabel JL;
     
-    Pion(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Pion(JLabel JL) {
+        this.JL = JL;
+    }
+    
+    public JLabel get_label() {
+        return this.JL;
     }
 }

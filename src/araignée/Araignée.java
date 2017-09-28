@@ -24,44 +24,21 @@ import javax.swing.*;
 public class Araignée {
 
     public static void main(String[] args) {
+        
+        Grille g = new Grille();
                              
-        JFrame f = new JFrame("Jeu de l'araignée");
+        MyFrame MF = new MyFrame(g);
         JApplet lines = new DrawLines();
-        f.getContentPane().add("Center", lines);
+        MF.f.getContentPane().add("Center", lines);
         lines.init();
         
-        JMenuBar menuBar;
-        JMenu menu, submenu;
-        JMenuItem menuItem;
-        JRadioButtonMenuItem rbMenuItem;
-        JCheckBoxMenuItem cbMenuItem;
-
-        //Create the menu bar.
-        menuBar = new JMenuBar();
-
-        //Build the first menu.
-        menu = new JMenu("Play");
-        menu.setMnemonic(KeyEvent.VK_A);
-        menu.getAccessibleContext().setAccessibleDescription(
-                "The only menu in this program that has menu items");
-        menuBar.add(menu);
         
-        //a group of JMenuItems
-        menuItem = new JMenuItem("New Party",
-                                 KeyEvent.VK_T);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(
-                KeyEvent.VK_1, ActionEvent.ALT_MASK));
-        menuItem.getAccessibleContext().setAccessibleDescription(
-                "This doesn't really do anything");
-        menu.add(menuItem);
-        
-        Grille g=new Grille();
-        f.setContentPane(g.Cadre);
-        f.pack();
-        f.setJMenuBar(menuBar);
-        f.setSize(new Dimension(600,600));
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setVisible(true);
+        MF.f.setContentPane(g.Cadre);
+        MF.f.pack();
+        MF.f.setJMenuBar(MF.menuBar);
+        MF.f.setSize(new Dimension(600,600));
+        MF.f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        MF.f.setVisible(true);
      }
    
 }

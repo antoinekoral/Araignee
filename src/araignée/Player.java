@@ -6,28 +6,61 @@
 package araignée;
 
 import java.util.ArrayList;
+import javax.swing.JLabel;
 
 /**
  *
  * @author antoine
  */
 public class Player {
+    
     private String login;
     private ArrayList<Pion> pions;
-    private int pions_places;
+    private int pionsPlaces;
+    private String image;
     
-    Player(String login) {
+    Player(String login,String image) {
         this.login = login;        
+        this.image = image;
+        pionsPlaces = 0;
     }
     
-    public void NewMove(int x, int y) {
+    public void NewMove(JLabel JL) {
         //Ajout d'un nouveau pion
-        pions.add(new Pion(x, y));
+        pions.add(new Pion(JL));
+        pionsPlaces += 1;
     }
     
-    public void NewMove(Pion p,int x,int y) {
+    public JLabel NewMove(Pion p,JLabel JL) {
         //Modifier la position d'un pion existant
         pions.remove(p);
-        pions.add(new Pion(x,y));
+        pions.add(new Pion(JL));
+        return p.get_label();
+    }
+    
+    public String get_image() {
+        return this.image;
+    }
+    
+    public int get_pionsPlaces() {
+        return this.pionsPlaces;
+    }
+    
+    public String get_login() {
+        return this.login;
+    }
+    
+    public ArrayList get_pions() {
+        return this.pions;
+    }
+    
+    public Pion search_JL(JLabel JL) {
+        Pion pion_cherche = new Pion(new JLabel());
+        for (int i=0; i<pions.size();i++) {
+            Pion pion = pions.get(i);
+            if (pion.get_label()==JL)
+                pion_cherche = pion;
+        }
+        return pion_cherche;
     }
 }
