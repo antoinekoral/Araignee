@@ -11,18 +11,16 @@ import javax.swing.JLabel;
  *
  * @author antoine
  */
-public class Pion {
-    private JLabelPerso JL;
+public class JLabelPerso extends JLabel {
     
-    public Pion(JLabelPerso JL) {
-        this.JL = JL;
+    private String id;
+    
+    public JLabelPerso(String s) {
+        id = s;
     }
     
-    public JLabel get_label() {
-        return this.JL;
+    public String get_id() {
+        return id;
     }
     
-    public String get_case_id() {
-        return JL.get_id();
-    }
 }

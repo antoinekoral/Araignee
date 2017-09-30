@@ -9,38 +9,61 @@ package araignée;
  *
  * @author Théo
  */
-import java.awt.Color;
+
 import javax.swing.*;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 
 public class TraiteClic implements MouseListener {
-    private JLabel Case;
+    private JLabelPerso Case;
     private String icone;
-    private Player jqj;
+    private Partie partie;
+    public Player joueurquijoue;
     public boolean clicked;
+    private Player joueur1;
+    private Player joueur2;
+    public String message;
     
-    public TraiteClic (JLabel jl,Player j){
+    public TraiteClic (JLabelPerso jl,Partie p){
         Case=jl;
-        jqj=j;
-        icone=j.get_image();
-        clicked=false;        
+        this.partie = p;
+        joueurquijoue= p.joueurquijoue;
+        icone=p.joueurquijoue.get_image();
+        clicked=false;
+        joueur1 = p.joueur1;
+        joueur2 = p.joueur2;
+        message = joueurquijoue.get_login() + ", à toi de jouer !";
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        Case.setIcon(new ImageIcon(icone+".png"));
-        if (jqj.get_pionsPlaces()!=3)
-            jqj.NewMove(Case);
-        else if (jqj.second_clic){
-            jqj.NewMove(jqj.pion_choisi,Case);
-            jqj.second_clic=false;
+        joueurquijoue = partie.joueurquijoue;
+        icone = joueurquijoue.get_image();
+        System.out.println("Click de " + joueurquijoue.get_login()+".");
+        System.out.println("Utilisation du logo " + icone +".");
+        if (partie.finie) {
+            System.out.println("Finie!");
+            partie.message = "Ne sois pas mauvais perdant voyons.. fais une nouvelle partie plutôt !";
+            partie.changerText();
+        } else {
+            if (joueurquijoue.get_pionsPlaces()!=3)
+            partie.NewMove(joueurquijoue,Case);
+            else if (joueurquijoue.second_clic){
+                partie.NewMove(joueurquijoue,joueurquijoue.pion_choisi,Case);
+                joueurquijoue.second_clic=false;
+            } else{
+                if (joueurquijoue.estDans_JL(Case)) {
+                    joueurquijoue.pion_choisi=joueurquijoue.search_JL(Case);
+                    joueurquijoue.second_clic=true;
+                    partie.message = "Maintenant choisi l'endroit où tu veux le replacer.";
+                    partie.changerText();
+                } else {
+                    System.out.println("On est d'accord, il est con..");
+                    partie.message = "Choisi un de tes pions afin de le bouger..";
+                    partie.changerText();
+                }
+            }
         }
-        else{
-            jqj.pion_choisi=jqj.search_JL(Case);
-            jqj.second_clic=true;
-        }
-            
     }
 
     @Override

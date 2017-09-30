@@ -7,15 +7,6 @@ package araignée;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.geom.Line2D;
-import java.awt.*;
 import javax.swing.*;
 
 /**
@@ -26,15 +17,20 @@ public class Araignée {
 
     public static void main(String[] args) {
         
-        Grille g = new Grille();
-                             
-        MyFrame MF = new MyFrame(g);
+        JLabel Annonces=new JLabel ("");
+        
+        Partie partie = new Partie("Joueur1","Joueur2",Annonces);
+        
+        Grille g = new Grille(partie);
+        
+        MyFrame MF = new MyFrame(g,Annonces);
+        
         JApplet lines = new DrawLines();
         MF.f.getContentPane().add("Center", lines);
         lines.init();
         
         JPanel Texte=new JPanel();
-        JLabel Annonces=new JLabel ("TEXT",SwingConstants.CENTER);
+        
         Texte.setPreferredSize(new Dimension(600,100));
         Texte.add(Annonces);
         

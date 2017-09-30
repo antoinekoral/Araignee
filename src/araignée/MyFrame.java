@@ -10,7 +10,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -25,15 +27,17 @@ public class MyFrame extends JFrame implements ActionListener, ItemListener {
     public JFrame f;
     public JMenuBar menuBar;
     private Grille g;
-    private Partie partie;
+    public String message;
+    private JLabel JL;
+
     
-    public MyFrame(Grille g) {
+    public MyFrame(Grille g,JLabel j) {
         
         f = new JFrame("Jeu de l'araignée");
         menuBar = new JMenuBar();
         createMenuBar();
+        JL = j;
         this.g = g;
-        
     }
     
     public void createMenuBar() {
@@ -58,7 +62,11 @@ public class MyFrame extends JFrame implements ActionListener, ItemListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        this.partie = new Partie("Lakoh","Reiz",this.g); //To change body of generated methods, choose Tools | Templates.
+        g.partie.reinitialize("Lakoh","Reiz",JL);
+        for (JLabel JL : g.JList) {
+            JL.setIcon(new ImageIcon("Nothing.png"));
+        }
+        
     }
 
     @Override

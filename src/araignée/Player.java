@@ -6,7 +6,6 @@
 package araignée;
 
 import java.util.ArrayList;
-import javax.swing.JLabel;
 
 /**
  *
@@ -15,12 +14,11 @@ import javax.swing.JLabel;
 public class Player {
     
     private String login;
-    private ArrayList<Pion> pions;
-    private int pionsPlaces;
+    public ArrayList<Pion> pions;
+    public int pionsPlaces;
     private String image;
     public Pion pion_choisi;
     public boolean second_clic;
-    private Partie partie;
 
     
     Player(String login,String image) {
@@ -29,28 +27,6 @@ public class Player {
         pionsPlaces = 0;
         second_clic=false;
         pions=new ArrayList<>();
-    }
-    
-    public void NewMove(JLabel JL) {
-        //Ajout d'un nouveau pion
-        if ((partie.joueur1.search_JL(JL) == new Pion(new JLabel())) &&
-            (partie.joueur2.search_JL(JL) == new Pion(new JLabel()))) {
-            pions.add(new Pion(JL));
-            pionsPlaces += 1;
-            partie.changerJoueur();
-        } else {
-            partie.message += ""
-                    + "Il y a déjà un pion à cet endroit !";
-        }
-
-    }
-    
-    public JLabel NewMove(Pion p,JLabel JL) {
-        //Modifier la position d'un pion existant
-        pions.remove(p);
-        pionsPlaces -= 1;
-        NewMove(JL);
-        return p.get_label();
     }
     
     public String get_image() {
@@ -69,13 +45,43 @@ public class Player {
         return this.pions;
     }
     
-    public Pion search_JL(JLabel JL) {
-        Pion pion_cherche = new Pion(new JLabel());
+    public Pion search_JL(JLabelPerso JL) {
+        Pion pion_cherche = new Pion(new JLabelPerso("Pas de pion."));
         for (int i=0; i<pions.size();i++) {
             Pion pion = pions.get(i);
             if (pion.get_label()==JL)
                 pion_cherche = pion;
         }
         return pion_cherche;
+    }
+    
+    public boolean estDans_JL(JLabelPerso JL) {
+        System.out.println("estDans : " + JL.get_id());
+        boolean rep = false;
+        for (int i=0; i<pions.size();i++) {
+            Pion pion = pions.get(i);
+            System.out.println(pion.get_case_id());
+            if (JL.get_id() == pion.get_case_id())
+                rep = true;
+        }
+        return rep;
+    }
+    
+    public ArrayList<String> transfo_pions() {
+        ArrayList<String> pionTransfo = new ArrayList<>();
+        for (Pion pion : pions) {
+            pionTransfo.add(pion.get_case_id());
+        }
+        return pionTransfo;
+    }
+    
+    public void set_login(String l) {
+        login = l;
+    }
+    
+    public void reinitialize() {
+        pions = new ArrayList<>();
+        pionsPlaces = 0;
+        second_clic = false;
     }
 }

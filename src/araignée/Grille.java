@@ -15,8 +15,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 
@@ -34,33 +32,47 @@ public class Grille {
     public JLabel S;
     public JLabel SO;
     public ArrayList<TraiteClic> TC;
+    public ArrayList<JLabel> JList;
     public Player joueurquijoue;
+    public Partie partie;
     
     
-    public Grille (){
+    public Grille (Partie p){
         TopCadre=new JLabel(new ImageIcon ("Grille_Morpion.png"));
         Cadre=new JLabel(new ImageIcon("icon.jpg"));
-        NE=new JLabel();
-        N=new JLabel();
-        NO=new JLabel();
-        O=new JLabel();
-        C=new JLabel();
-        E=new JLabel();
-        SE=new JLabel();
-        S=new JLabel();
-        SO=new JLabel();
+        partie = p;
         
-        joueurquijoue=new Player("a","a");
+        NE=new JLabelPerso("NE");
+        N=new JLabelPerso("N");
+        NO=new JLabelPerso("NO");
+        O=new JLabelPerso("O");
+        C=new JLabelPerso("C");
+        E=new JLabelPerso("E");
+        SE=new JLabelPerso("SE");
+        S=new JLabelPerso("S");
+        SO=new JLabelPerso("SO");
         
-        TraiteClic tcNE = new TraiteClic(NE,joueurquijoue);
-        TraiteClic tcN = new TraiteClic(N,joueurquijoue);
-        TraiteClic tcNO = new TraiteClic(NO,joueurquijoue);
-        TraiteClic tcE = new TraiteClic(E,joueurquijoue);
-        TraiteClic tcC = new TraiteClic(C,joueurquijoue);
-        TraiteClic tcO = new TraiteClic(O,joueurquijoue);
-        TraiteClic tcSO = new TraiteClic(SO,joueurquijoue);
-        TraiteClic tcS = new TraiteClic(S,joueurquijoue);
-        TraiteClic tcSE = new TraiteClic(SE,joueurquijoue);
+        JList = new ArrayList<>();
+        JList.add(NE);
+        JList.add(N);
+        JList.add(NO);
+        JList.add(O);
+        JList.add(C);
+        JList.add(E);
+        JList.add(SE);
+        JList.add(S);
+        JList.add(SO);
+        
+        TraiteClic tcNE = new TraiteClic((JLabelPerso) NE,partie);
+        TraiteClic tcN = new TraiteClic((JLabelPerso) N,partie);
+        TraiteClic tcNO = new TraiteClic((JLabelPerso) NO,partie);
+        TraiteClic tcE = new TraiteClic((JLabelPerso) E,partie);
+        TraiteClic tcC = new TraiteClic((JLabelPerso) C,partie);
+        TraiteClic tcO = new TraiteClic((JLabelPerso) O,partie);
+        TraiteClic tcSO = new TraiteClic((JLabelPerso) SO,partie);
+        TraiteClic tcS = new TraiteClic((JLabelPerso) S,partie);
+        TraiteClic tcSE = new TraiteClic((JLabelPerso) SE,partie);
+        
         TC=new ArrayList<>();
         TC.add(tcNE);
         TC.add(tcN);
@@ -99,16 +111,25 @@ public class Grille {
         TopCadre.add(Cadre);
         TopCadre.setPreferredSize(new Dimension(600,600));
         
-        NO.addMouseListener (tcNO);
-        N.addMouseListener (tcN);
-        NE.addMouseListener (tcNE);
-        E.addMouseListener (tcE);
-        C.addMouseListener (tcC);
-        O.addMouseListener (tcO);
-        SO.addMouseListener (tcSO);
-        S.addMouseListener (tcS);
-        SE.addMouseListener (tcSE);
+        NO.addMouseListener(tcNO);
+        N.addMouseListener(tcN);
+        NE.addMouseListener(tcNE);
+        E.addMouseListener(tcE);
+        C.addMouseListener(tcC);
+        O.addMouseListener(tcO);
+        SO.addMouseListener(tcSO);
+        S.addMouseListener(tcS);
+        SE.addMouseListener(tcSE);
         
+        /*for (TraiteClic tc: TC) {
+            System.out.println(tc.clicked);
+            if (tc.clicked) {
+                joueurquijoue = tc.joueurquijoue;
+                message = tc.message;
+                System.out.println("Partie.java : " + joueurquijoue +"-"+message);
+                tc.clicked = false;
+            }
+        }*/
         /*
         public JLabel CaseCliquee (g.TC){
             for (TraiteClic tc : TC)
