@@ -28,10 +28,6 @@ public class Araignée {
         
         MyFrame MF = new MyFrame(g,Annonces);
         
-        JApplet lines = new DrawLines();
-        MF.f.getContentPane().add("Center", lines);
-        lines.init();
-        
         JPanel Texte=new JPanel();
         
         Texte.setPreferredSize(new Dimension(600,50));

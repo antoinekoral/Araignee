@@ -45,8 +45,8 @@ public class Player {
         return this.pions;
     }
     
-    public Pion search_JL(JLabelPerso JL) {
-        Pion pion_cherche = new Pion(new JLabelPerso("Pas de pion."));
+    public Pion search_JL(MyJLabel JL) {
+        Pion pion_cherche = new Pion(new MyJLabel("Pas de pion."));
         for (int i=0; i<pions.size();i++) {
             Pion pion = pions.get(i);
             if (pion.get_label()==JL)
@@ -55,7 +55,7 @@ public class Player {
         return pion_cherche;
     }
     
-    public boolean estDans_JL(JLabelPerso JL) {
+    public boolean estDans_JL(MyJLabel JL) {
         System.out.println("estDans : " + JL.get_id());
         boolean rep = false;
         for (int i=0; i<pions.size();i++) {

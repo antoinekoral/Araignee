@@ -11,11 +11,11 @@ import javax.swing.JLabel;
  *
  * @author antoine
  */
-public class JLabelPerso extends JLabel {
+public class MyJLabel extends JLabel {
     
     private String id;
     
-    public JLabelPerso(String s) {
+    public MyJLabel(String s) {
         id = s;
     }
     

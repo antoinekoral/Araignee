@@ -37,10 +37,31 @@ public class Partie {
         //joueurquijoue=new Player("","");
  
     }
-    public void NewMove(Player joueur,JLabelPerso JL) {
+    public void NewMove(Player joueur,MyJLabel JL) {
         System.out.println("Mouvement de " + joueur.get_login());
         //Ajout d'un nouveau pion
-        if (!((joueur1.estDans_JL(JL)) || (joueur2.estDans_JL(JL)))) {
+        if (joueur.get_secondClic()) {
+            if (authorizedMove(joueur.get_pionChoisi(),JL)) {
+                if (!((joueur1.estDans_JL(JL)) || (joueur2.estDans_JL(JL)))) {
+                    joueur.set_secondClic(false);
+                    joueur.add_pions(new Pion(JL));
+                    joueur.modif_pionsPlaces(1);
+                    JL.setIcon(new ImageIcon(joueur.get_image()+".png"));
+                    if (testPartieFinie()) {
+                        finie = true;
+                        message = "Bravo " + joueurquijoue.get_login() + " tu as gagné !";
+                        text.setText(message);
+                    } else
+                        changerJoueur();
+                } else {
+                    message = "Il y a déjà un pion à cet endroit, essaie ailleurs.";
+                    text.setText(message);
+                }
+            } else {
+                message = "Il faut se déplacer le long des segments !";
+                text.setText(message);
+            }
+        } else if (!((joueur1.estDans_JL(JL)) || (joueur2.estDans_JL(JL)))) {
             joueur.add_pions(new Pion(JL));
             joueur.modif_pionsPlaces(1);
             JL.setIcon(new ImageIcon(joueur.get_image()+".png"));
@@ -57,7 +78,7 @@ public class Partie {
         System.out.println("C'est maintenant à " + joueurquijoue.get_login() + " de jouer.");
     }
     
-    public JLabel NewMove(Player joueur,Pion p,JLabelPerso JL) {
+    public JLabel NewMove(Player joueur,Pion p,MyJLabel JL) {
         //Modifier la position d'un pion existant
         joueur.remove_pions(p);
         p.get_label().setIcon(new ImageIcon("Nothing.png"));
@@ -108,6 +129,30 @@ public class Partie {
         text.setText(message);
         
         finie = false;
+    }
+    
+    public boolean authorizedMove(Pion p,MyJLabel JL) {
+        String depart = p.get_case_id();
+        String arrivee = JL.get_id();
+        
+        if (depart == "NO")
+            return ((arrivee=="N") || (arrivee=="C") || (arrivee=="O") || (arrivee==depart));
+        else if (depart == "N")
+            return ((arrivee=="NO") || (arrivee=="NE") || (arrivee=="C") || (arrivee==depart));
+        else if (depart == "NE")
+            return ((arrivee=="N") || (arrivee=="C") || (arrivee=="E") || (arrivee==depart));
+        else if (depart == "E")
+            return ((arrivee=="NE") || (arrivee=="C") || (arrivee=="SE") || (arrivee==depart));
+        else if (depart == "O")
+            return ((arrivee=="NO") || (arrivee=="C") || (arrivee=="SO") || (arrivee==depart));
+        else if (depart == "SO")
+            return ((arrivee=="O") || (arrivee=="C") || (arrivee=="S") || (arrivee==depart));
+        else if (depart == "S")
+            return ((arrivee=="SO") || (arrivee=="C") || (arrivee=="SE") || (arrivee==depart));
+        else if (depart == "SE")
+            return ((arrivee=="E") || (arrivee=="C") || (arrivee=="S") || (arrivee==depart));
+        else
+            return true;
     }
     
     public Player get_joueurquijoue() {

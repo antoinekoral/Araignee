@@ -22,15 +22,15 @@ import java.util.ArrayList;
 public class Grille {
     public JLabel Cadre;
     public JLabel TopCadre;
-    private JLabel NE;
-    private JLabel N;
-    private JLabel NO;
-    private JLabel O;
-    private JLabel C;
-    private JLabel E;
-    private JLabel SE;
-    private JLabel S;
-    private JLabel SO;
+    private MyJLabel NE;
+    private MyJLabel N;
+    private MyJLabel NO;
+    private MyJLabel O;
+    private MyJLabel C;
+    private MyJLabel E;
+    private MyJLabel SE;
+    private MyJLabel S;
+    private MyJLabel SO;
     private ArrayList<TraiteClic> TC;
     public ArrayList<JLabel> JList;
     private Player joueurquijoue;
@@ -42,15 +42,15 @@ public class Grille {
         Cadre=new JLabel(new ImageIcon("icon.jpg"));
         partie = p;
         
-        NE=new JLabelPerso("NE");
-        N=new JLabelPerso("N");
-        NO=new JLabelPerso("NO");
-        O=new JLabelPerso("O");
-        C=new JLabelPerso("C");
-        E=new JLabelPerso("E");
-        SE=new JLabelPerso("SE");
-        S=new JLabelPerso("S");
-        SO=new JLabelPerso("SO");
+        NE=new MyJLabel("NE");
+        N=new MyJLabel("N");
+        NO=new MyJLabel("NO");
+        O=new MyJLabel("O");
+        C=new MyJLabel("C");
+        E=new MyJLabel("E");
+        SE=new MyJLabel("SE");
+        S=new MyJLabel("S");
+        SO=new MyJLabel("SO");
         
         JList = new ArrayList<>();
         JList.add(NE);
@@ -63,15 +63,15 @@ public class Grille {
         JList.add(S);
         JList.add(SO);
         
-        TraiteClic tcNE = new TraiteClic((JLabelPerso) NE,partie);
-        TraiteClic tcN = new TraiteClic((JLabelPerso) N,partie);
-        TraiteClic tcNO = new TraiteClic((JLabelPerso) NO,partie);
-        TraiteClic tcE = new TraiteClic((JLabelPerso) E,partie);
-        TraiteClic tcC = new TraiteClic((JLabelPerso) C,partie);
-        TraiteClic tcO = new TraiteClic((JLabelPerso) O,partie);
-        TraiteClic tcSO = new TraiteClic((JLabelPerso) SO,partie);
-        TraiteClic tcS = new TraiteClic((JLabelPerso) S,partie);
-        TraiteClic tcSE = new TraiteClic((JLabelPerso) SE,partie);
+        TraiteClic tcNE = new TraiteClic((MyJLabel) NE,partie);
+        TraiteClic tcN = new TraiteClic((MyJLabel) N,partie);
+        TraiteClic tcNO = new TraiteClic((MyJLabel) NO,partie);
+        TraiteClic tcE = new TraiteClic((MyJLabel) E,partie);
+        TraiteClic tcC = new TraiteClic((MyJLabel) C,partie);
+        TraiteClic tcO = new TraiteClic((MyJLabel) O,partie);
+        TraiteClic tcSO = new TraiteClic((MyJLabel) SO,partie);
+        TraiteClic tcS = new TraiteClic((MyJLabel) S,partie);
+        TraiteClic tcSE = new TraiteClic((MyJLabel) SE,partie);
         
         TC=new ArrayList<>();
         TC.add(tcNE);

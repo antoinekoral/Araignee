@@ -13,9 +13,9 @@ import javax.swing.JLabel;
  */
 public class Pion {
     
-    private JLabelPerso JL;
+    private MyJLabel JL;
     
-    public Pion(JLabelPerso JL) {
+    public Pion(MyJLabel JL) {
         this.JL = JL;
     }
     

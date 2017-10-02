@@ -15,7 +15,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 
 public class TraiteClic implements MouseListener {
-    private JLabelPerso Case;
+    private MyJLabel Case;
     private String icone;
     private Partie partie;
     private Player joueurquijoue;
@@ -24,7 +24,7 @@ public class TraiteClic implements MouseListener {
     private Player joueur2;
     private String message;
     
-    public TraiteClic (JLabelPerso jl,Partie p){
+    public TraiteClic (MyJLabel jl,Partie p){
         Case=jl;
         this.partie = p;
         joueurquijoue= p.get_joueurquijoue();
@@ -50,7 +50,7 @@ public class TraiteClic implements MouseListener {
             partie.NewMove(joueurquijoue,Case);
             else if (joueurquijoue.get_secondClic()){
                 partie.NewMove(joueurquijoue,joueurquijoue.get_pionChoisi(),Case);
-                joueurquijoue.set_secondClic(false);
+                //joueurquijoue.set_secondClic(false);
             } else{
                 if (joueurquijoue.estDans_JL(Case)) {
                     joueurquijoue.set_pionChoisi(joueurquijoue.search_JL(Case));
@@ -58,7 +58,7 @@ public class TraiteClic implements MouseListener {
                     partie.set_message("Maintenant choisi l'endroit où tu veux le replacer.");
                     partie.changerText();
                 } else {
-                    System.out.println("On est d'accord, il est con..");
+                    System.out.println("Il y a déjà un pion là.");
                     partie.set_message("Choisi un de tes pions afin de le bouger..");
                     partie.changerText();
                 }
