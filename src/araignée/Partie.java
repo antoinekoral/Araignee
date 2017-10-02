@@ -15,12 +15,12 @@ import javax.swing.JLabel;
  */
 public class Partie {
     
-    public Player joueur1;
-    public Player joueur2;
-    public String message;
-    public Player joueurquijoue;
-    public JLabel text;
-    public boolean finie;
+    private Player joueur1;
+    private Player joueur2;
+    private String message;
+    private Player joueurquijoue;
+    private JLabel text;
+    private boolean finie;
     
     public Partie(String p1,String p2, JLabel j) {
         
@@ -41,8 +41,8 @@ public class Partie {
         System.out.println("Mouvement de " + joueur.get_login());
         //Ajout d'un nouveau pion
         if (!((joueur1.estDans_JL(JL)) || (joueur2.estDans_JL(JL)))) {
-            joueur.pions.add(new Pion(JL));
-            joueur.pionsPlaces += 1;
+            joueur.add_pions(new Pion(JL));
+            joueur.modif_pionsPlaces(1);
             JL.setIcon(new ImageIcon(joueur.get_image()+".png"));
             if (testPartieFinie()) {
                 finie = true;
@@ -59,9 +59,9 @@ public class Partie {
     
     public JLabel NewMove(Player joueur,Pion p,JLabelPerso JL) {
         //Modifier la position d'un pion existant
-        joueur.pions.remove(p);
+        joueur.remove_pions(p);
         p.get_label().setIcon(new ImageIcon("Nothing.png"));
-        joueur.pionsPlaces -= 1;
+        joueur.modif_pionsPlaces(-1);
         NewMove(joueur,JL);
         return p.get_label();
     }
@@ -112,6 +112,22 @@ public class Partie {
     
     public Player get_joueurquijoue() {
         return joueurquijoue;
+    }
+    
+    public Player get_joueur1() {
+        return joueur1;
+    }
+    
+    public Player get_joueur2() {
+        return joueur2;
+    }
+    
+    public boolean get_finie() {
+        return finie;
+    }
+    
+    public void set_message(String m) {
+        message = m;
     }
     
     public void changerText() {

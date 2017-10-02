@@ -12,6 +12,7 @@ import javax.swing.JLabel;
  * @author antoine
  */
 public class Pion {
+    
     private JLabelPerso JL;
     
     public Pion(JLabelPerso JL) {

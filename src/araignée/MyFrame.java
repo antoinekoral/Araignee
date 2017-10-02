@@ -27,7 +27,7 @@ public class MyFrame extends JFrame implements ActionListener, ItemListener {
     public JFrame f;
     public JMenuBar menuBar;
     private Grille g;
-    public String message;
+    private String message;
     private JLabel JL;
 
     
@@ -62,7 +62,7 @@ public class MyFrame extends JFrame implements ActionListener, ItemListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        g.partie.reinitialize("Lakoh","Reiz",JL);
+        g.partie.reinitialize("Joueur1","Joueur2",JL);
         for (JLabel JL : g.JList) {
             JL.setIcon(new ImageIcon("Nothing.png"));
         }

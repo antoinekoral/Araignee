@@ -22,18 +22,18 @@ import java.util.ArrayList;
 public class Grille {
     public JLabel Cadre;
     public JLabel TopCadre;
-    public JLabel NE;
-    public JLabel N;
-    public JLabel NO;
-    public JLabel O;
-    public JLabel C;
-    public JLabel E;
-    public JLabel SE;
-    public JLabel S;
-    public JLabel SO;
-    public ArrayList<TraiteClic> TC;
+    private JLabel NE;
+    private JLabel N;
+    private JLabel NO;
+    private JLabel O;
+    private JLabel C;
+    private JLabel E;
+    private JLabel SE;
+    private JLabel S;
+    private JLabel SO;
+    private ArrayList<TraiteClic> TC;
     public ArrayList<JLabel> JList;
-    public Player joueurquijoue;
+    private Player joueurquijoue;
     public Partie partie;
     
     

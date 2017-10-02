@@ -14,18 +14,18 @@ import java.util.ArrayList;
 public class Player {
     
     private String login;
-    public ArrayList<Pion> pions;
-    public int pionsPlaces;
+    private ArrayList<Pion> pions;
+    private int pionsPlaces;
     private String image;
-    public Pion pion_choisi;
-    public boolean second_clic;
+    private Pion pionChoisi;
+    private boolean secondClic;
 
     
     Player(String login,String image) {
         this.login = login;        
         this.image = image;
         pionsPlaces = 0;
-        second_clic=false;
+        secondClic=false;
         pions=new ArrayList<>();
     }
     
@@ -82,6 +82,34 @@ public class Player {
     public void reinitialize() {
         pions = new ArrayList<>();
         pionsPlaces = 0;
-        second_clic = false;
+        secondClic = false;
+    }
+    
+    public boolean get_secondClic() {
+        return secondClic;
+    }
+    
+    public void set_secondClic(boolean b) {
+        secondClic = b;
+    }
+    
+    public Pion get_pionChoisi() {
+        return pionChoisi;
+    }
+    
+    public void set_pionChoisi(Pion p) {
+        pionChoisi = p;
+    }
+    
+    public void modif_pionsPlaces(int i) {
+        pionsPlaces = pionsPlaces + i;
+    }
+    
+    public void add_pions(Pion p) {
+        pions.add(p);
+    }
+    
+    public void remove_pions(Pion p) {
+        pions.remove(p);
     }
 }
