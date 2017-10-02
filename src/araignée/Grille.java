@@ -105,10 +105,10 @@ public class Grille {
         Cadre.add(SO);
         Cadre.add(S);
         Cadre.add(SE);
-        Cadre.setBorder(BorderFactory.createLineBorder(Color.white,20));
+        Cadre.setBorder(BorderFactory.createLineBorder(Color.white,66));
         
         TopCadre.setLayout(new BorderLayout());
-        TopCadre.add(Cadre);
+        TopCadre.add("Center",Cadre);
         TopCadre.setPreferredSize(new Dimension(600,600));
         
         NO.addMouseListener(tcNO);
@@ -120,29 +120,6 @@ public class Grille {
         SO.addMouseListener(tcSO);
         S.addMouseListener(tcS);
         SE.addMouseListener(tcSE);
-        
-        /*for (TraiteClic tc: TC) {
-            System.out.println(tc.clicked);
-            if (tc.clicked) {
-                joueurquijoue = tc.joueurquijoue;
-                message = tc.message;
-                System.out.println("Partie.java : " + joueurquijoue +"-"+message);
-                tc.clicked = false;
-            }
-        }*/
-        /*
-        public JLabel CaseCliquee (g.TC){
-            for (TraiteClic tc : TC)
-                if (tc.clicked==true)
-                    return tc;                
-        }
-        
-        public void ResetCase (g.TC){
-            for (TraiteClic tc : TC)
-                tc.clicked=false;
-        }
-        
-        */
                         
     }
 }
