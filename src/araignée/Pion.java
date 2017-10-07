@@ -24,6 +24,7 @@ public class Pion {
     }
     
     public String get_case_id() {
+        //Renvoie l'id associé à un MyJLabel.
         return JL.get_id();
     }
 }

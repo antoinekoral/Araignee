@@ -25,28 +25,32 @@ public class Partie {
     public Partie(String p1,String p2, JLabel j) {
         
         System.out.println("Nouvelle partie : " + p1 + "-" + p2 + ".");
-        
+        //Création des joueurs de la partie.
         joueur1 = new Player(p1,"Circle");
         joueur2 = new Player(p2,"Cross");
+        //Repérage du joueur actuellement en train de jouer.
         joueurquijoue = joueur1;
+        //Message affiché au joueur.
         message = joueurquijoue.get_login() + ", à toi de jouer !";
+        //Affichage de ce message.
         text = j;
         text.setText(message);
-        finie = false;
-
-        //joueurquijoue=new Player("","");
- 
+        //Permet de vérifier si la partie est terminée.
+        finie = false; 
     }
+    
     public void NewMove(Player joueur,MyJLabel JL) {
+        //Permet l'ajout d'un nouveau pion.
+        
         System.out.println("Mouvement de " + joueur.get_login());
-        //Ajout d'un nouveau pion
-        if (joueur.get_secondClic()) {
-            if (authorizedMove(joueur.get_pionChoisi(),JL)) {
-                if (!((joueur1.estDans_JL(JL)) || (joueur2.estDans_JL(JL)))) {
+ 
+        if (joueur.get_secondClic()) { //si le joueur est en train de modifier la position d'un pion
+            if (authorizedMove(joueur.get_pionChoisi(),JL)) { //si le mouvement souhaité est autorisé
+                if (!((joueur1.estDans_JL(JL)) || (joueur2.estDans_JL(JL)))) { //si il n'y a pas déjà un pion dans la case visée
                     joueur.set_secondClic(false);
                     joueur.add_pions(new Pion(JL));
-                    joueur.modif_pionsPlaces(1);
-                    JL.setIcon(new ImageIcon(joueur.get_image()+".png"));
+                    joueur.modif_pionsPlaces(1); //rajoute 1 dans le nombre de pions placés par le joueur
+                    JL.setIcon(new ImageIcon(joueur.get_image()+".png")); //place le pion de manière graphique dans la case visée
                     if (testPartieFinie()) {
                         finie = true;
                         message = "Bravo " + joueurquijoue.get_login() + " tu as gagné !";
@@ -78,16 +82,18 @@ public class Partie {
         System.out.println("C'est maintenant à " + joueurquijoue.get_login() + " de jouer.");
     }
     
-    public JLabel NewMove(Player joueur,Pion p,MyJLabel JL) {
-        //Modifier la position d'un pion existant
-        joueur.remove_pions(p);
-        p.get_label().setIcon(new ImageIcon("Nothing.png"));
-        joueur.modif_pionsPlaces(-1);
+    public void NewMove(Player joueur,Pion p,MyJLabel JL) {
+        //Permet de modifier la position d'un pion existant.
+        
+        joueur.remove_pions(p); //retire le pion sélectionné des pions posés par le joueur
+        p.get_label().setIcon(new ImageIcon("Nothing.png")); //retire graphiquement le pion sélectionné par le joueur
+        joueur.modif_pionsPlaces(-1); //enlève 1 au nombre total de pions placés par le joueur
         NewMove(joueur,JL);
-        return p.get_label();
     }
     
     public void changerJoueur() {
+        //Renseigne le changement de joueur suite à un mouvement.
+        
         if (joueurquijoue == joueur1) {
             joueurquijoue = joueur2;
             
@@ -99,6 +105,8 @@ public class Partie {
     }
     
     public boolean testPartieFinie() {
+        //Permet de tester si le dernier mouvement effectué à permet de finir la partie.
+        
         if (joueurquijoue.get_pionsPlaces() != 3) {
             return false;
         } else {
@@ -115,6 +123,7 @@ public class Partie {
     }
     
     public void reinitialize(String p1,String p2, JLabel j) {
+        //Permet de réinitialiser les éléments nécessaires afin de faire une nouvelle partie.
         
         System.out.println("Nouvelle partie : " + p1 + "-" + p2 + ".");
         
@@ -132,6 +141,8 @@ public class Partie {
     }
     
     public boolean authorizedMove(Pion p,MyJLabel JL) {
+        //Permet de savoir si le mouvement souhaité est autorisé ou non.
+        
         String depart = p.get_case_id();
         String arrivee = JL.get_id();
         

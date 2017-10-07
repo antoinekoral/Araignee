@@ -24,9 +24,10 @@ public class Player {
     Player(String login,String image) {
         this.login = login;        
         this.image = image;
+        
         pionsPlaces = 0;
-        secondClic=false;
         pions=new ArrayList<>();
+        secondClic=false;
     }
     
     public String get_image() {
@@ -46,6 +47,10 @@ public class Player {
     }
     
     public Pion search_JL(MyJLabel JL) {
+        //Permet de savoir si le joueur a positionné un pion dans une case précise.
+        //Renvoie le pion présent sur la case s'il y en a un.
+        //Renvoie un pion par défaut s'il n'y en a pas.
+        
         Pion pion_cherche = new Pion(new MyJLabel("Pas de pion."));
         for (int i=0; i<pions.size();i++) {
             Pion pion = pions.get(i);
@@ -56,6 +61,9 @@ public class Player {
     }
     
     public boolean estDans_JL(MyJLabel JL) {
+        //Permet de savoir si le joueur a positionné un pion dans une case précise.
+        //Renvoie true ou false.
+        
         System.out.println("estDans : " + JL.get_id());
         boolean rep = false;
         for (int i=0; i<pions.size();i++) {
@@ -68,6 +76,9 @@ public class Player {
     }
     
     public ArrayList<String> transfo_pions() {
+        //Permet de former la liste des id des cases dans lesquelles se trouve
+        //les pions du joueur.
+        
         ArrayList<String> pionTransfo = new ArrayList<>();
         for (Pion pion : pions) {
             pionTransfo.add(pion.get_case_id());

@@ -42,20 +42,12 @@ public class MyFrame extends JFrame implements ActionListener, ItemListener {
     
     public void createMenuBar() {
 
-        //Build the first menu.
+        //Création du menu.
         JMenu menu = new JMenu("Play");
-        menu.setMnemonic(KeyEvent.VK_A);
-        menu.getAccessibleContext().setAccessibleDescription(
-                "The only menu in this program that has menu items");
         menuBar.add(menu);
         
-        //a group of JMenuItems
-        JMenuItem menuItem = new JMenuItem("New Party",
-                                 KeyEvent.VK_T);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(
-                KeyEvent.VK_1, ActionEvent.ALT_MASK));
-        menuItem.getAccessibleContext().setAccessibleDescription(
-                "This doesn't really do anything");
+        //Création de l'item du menu.
+        JMenuItem menuItem = new JMenuItem("New Party");
         menuItem.addActionListener(this);
         menu.add(menuItem);
     }

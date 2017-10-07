@@ -19,13 +19,17 @@ public class Araignée {
 
     public static void main(String[] args) {
         
+        //Création du JLabel comportant les messages aux joueurs.
         JLabel Annonces=new JLabel ("");
         Annonces.setFont(new Font("Times New Roman",Font.BOLD,20));
         
+        //Création de la partie.
         Partie partie = new Partie("Joueur1","Joueur2",Annonces);
         
+        //Création de la grille de jeu.
         Grille g = new Grille(partie);
         
+        //Création de la frame.
         MyFrame MF = new MyFrame(g,Annonces);
         
         JPanel Texte=new JPanel();
@@ -37,6 +41,7 @@ public class Araignée {
         Jeu.setBackground(Color.white);
         Jeu.setLayout(new BorderLayout());
         Jeu.add("Center", g.TopCadre);
+        
         MF.f.add("Center",Jeu);
         MF.f.add("South",Texte);
         MF.f.setResizable(false);

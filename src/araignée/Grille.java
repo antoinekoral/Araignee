@@ -38,10 +38,12 @@ public class Grille {
     
     
     public Grille (Partie p){
+        
         TopCadre=new JLabel(new ImageIcon ("Grille_Morpion.png"));
         Cadre=new JLabel(new ImageIcon("icon.jpg"));
         partie = p;
         
+        //Création des JLabels servant à détecter les clics d'utilisateurs.
         NE=new MyJLabel("NE");
         N=new MyJLabel("N");
         NO=new MyJLabel("NO");
@@ -51,7 +53,8 @@ public class Grille {
         SE=new MyJLabel("SE");
         S=new MyJLabel("S");
         SO=new MyJLabel("SO");
-        
+
+        //Création de la liste comportant ces JLabels.
         JList = new ArrayList<>();
         JList.add(NE);
         JList.add(N);
@@ -63,6 +66,7 @@ public class Grille {
         JList.add(S);
         JList.add(SO);
         
+        //Attribution d'un TraiteClic pour chaque JLabel.
         TraiteClic tcNE = new TraiteClic((MyJLabel) NE,partie);
         TraiteClic tcN = new TraiteClic((MyJLabel) N,partie);
         TraiteClic tcNO = new TraiteClic((MyJLabel) NO,partie);
@@ -73,6 +77,7 @@ public class Grille {
         TraiteClic tcS = new TraiteClic((MyJLabel) S,partie);
         TraiteClic tcSE = new TraiteClic((MyJLabel) SE,partie);
         
+        //Création de la liste comportant ces TraiteClics.
         TC=new ArrayList<>();
         TC.add(tcNE);
         TC.add(tcN);
@@ -84,6 +89,7 @@ public class Grille {
         TC.add(tcS);
         TC.add(tcSO);
         
+        //Définition de la taille des JLabels.
         Dimension dim=new Dimension(200,200);
         NE.setPreferredSize(dim);
         NO.setPreferredSize(dim);
@@ -95,6 +101,7 @@ public class Grille {
         S.setPreferredSize(dim);
         SE.setPreferredSize(dim);
         
+        //Ajout des JLabels au cadre de jeu.
         Cadre.setLayout(new GridLayout(0,3,130,130));
         Cadre.add(NO);
         Cadre.add(N);
@@ -111,6 +118,7 @@ public class Grille {
         TopCadre.add("Center",Cadre);
         TopCadre.setPreferredSize(new Dimension(600,600));
         
+        //Activation du clic pour chaque JLabel.
         NO.addMouseListener(tcNO);
         N.addMouseListener(tcN);
         NE.addMouseListener(tcNE);

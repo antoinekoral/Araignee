@@ -16,6 +16,7 @@ public class MyJLabel extends JLabel {
     private String id;
     
     public MyJLabel(String s) {
+        //Ajout d'un id à un JLabel.
         id = s;
     }
     
